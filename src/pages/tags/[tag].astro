@@ -1,10 +1,11 @@
 ---
+import { getTags } from '../../utils/getTags'
 import BaseLayout from "../../layouts/BaseLayout.astro"
 import BlogPostLine from '../../components/BlogPostLine.astro'
 
 export const getStaticPaths = async () => {
   const allPosts = await Astro.glob('../posts/*.md')
-  const uniqueTags = [...new Set(allPosts.map((post) => post.frontmatter.tags).flat())]
+  const uniqueTags = getTags(allPosts)
   return uniqueTags.map((tag) => ({ params: { tag }, props: { posts: allPosts } }))
 }
 

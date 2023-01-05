@@ -1,5 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro'
+import TagChip from '../components/TagChip.astro'
+
 const { frontmatter } = Astro.props;
 const fmtPubDate = new Date(frontmatter.pubDate).toLocaleDateString('en-US', {
   year: 'numeric',
@@ -9,31 +11,34 @@ const fmtPubDate = new Date(frontmatter.pubDate).toLocaleDateString('en-US', {
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
-<style>
-  header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 1rem;
-    font-style: italic;
-  }
-  header aside {
-    text-align: center;
-    padding: 0;
-  }
-  @media screen and (min-width: 636px) {
+  <style>
     header {
-      flex-direction: row;
-      justify-content: space-between;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 1rem;
+      font-style: italic;
     }
-  }
-</style>
-<header>
-  <img class="blog-image" src={frontmatter.image.url} alt={frontmatter.image.alt} width="240"/>
-  <aside>
-    <p>Written by <b>{frontmatter.author}</b></p>
-    <p>published on {fmtPubDate}</p>
-  </aside>
-</header>
-<slot />
+    header aside {
+      text-align: center;
+      padding: 0;
+    }
+    @media screen and (min-width: 636px) {
+      header {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+  </style>
+  <header>
+    <img class="blog-image" src={frontmatter.image.url} alt={frontmatter.image.alt} width="240"/>
+    <aside>
+      <p>Written by <b>{frontmatter.author}</b></p>
+      <p>published on {fmtPubDate}</p>
+    </aside>
+  </header>
+  <slot />
+  <p>
+    {frontmatter.tags.map((tag) => <TagChip {tag} />)}
+  </p>
 </BaseLayout>

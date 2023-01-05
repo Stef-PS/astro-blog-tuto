@@ -1,0 +1,25 @@
+---
+const { tag } = Astro.props
+const url = `/tags/${tag}/`
+---
+
+<style>
+  a {
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 0.5rem;
+  }
+  button {
+    border: none;
+    border-radius: 0.33rem;
+    background-color: pink;
+    padding: 0.25rem 0.5rem;
+  }
+  button:hover {
+    background-color: darksalmon;
+    color: white;
+  }
+</style>
+<a href={url}>
+  <button>{tag}</button>
+</a>
