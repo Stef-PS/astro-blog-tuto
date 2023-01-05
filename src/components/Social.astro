@@ -1,0 +1,13 @@
+---
+const { platform, username } = Astro.props
+const specialPatterns = {
+  linkedin: `https://linkedin.com/in/${username}/`,
+}
+const platformUrl = specialPatterns[platform] || `https://${platform}.com/${username}/`
+---
+
+<a href={platformUrl}>{platform}</a>
+
+<style>
+  a { text-transform: capitalize; }
+</style>
