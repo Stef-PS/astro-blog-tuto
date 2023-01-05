@@ -1,0 +1,12 @@
+---
+const { url, frontmatter: { title, author, pubDate }} = Astro.props.post
+const fmtPubDate = new Date(pubDate).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<li>
+  <b><a href={url}>{title}</a></b> by {author} <i>({fmtPubDate})</i>
+</li>
