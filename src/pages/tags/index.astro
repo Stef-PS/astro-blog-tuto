@@ -2,6 +2,7 @@
 import { getTags } from '../../utils/getTags'
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import TagChip from '../../components/TagChip.astro'
+
 const allPosts = await Astro.glob('../posts/*.md')
 const uniqueTags = getTags(allPosts)
 ---
